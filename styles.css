@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #e0f7fa; /* پس‌زمینه آبی کمرنگ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    justify-content: flex-start; /* چسباندن ورودی و دکمه */
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    border: 2px solid #007bff; /* رنگ آبی */
+    border-radius: 5px 0 0 5px; /* گوشه‌های چپ ورودی گرد */
+    padding: 10px;
+    width: 75%; /* اندازه ورودی */
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff; /* رنگ آبی */
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0; /* گوشه‌های راست دکمه گرد */
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* رنگ آبی تیره‌تر */
+}
+
+ul {
+    list-style: none;
+    margin-top: 20px;
+    padding: 0;
+}
+
+li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center; /* تراز وسط */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.task-checkbox {
+    margin-right: 10px; /* فاصله از متن وظیفه */
+}
+
+li.completed span {
+    text-decoration: line-through; /* خط‌خورده شدن متن وظیفه */
+    color: #ababab; /* رنگ خاکستری برای وظیفه کامل شده */
+}
+
+button.edit {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px; /* فاصله از ضربدر */
+    color: #007bff; /* رنگ آبی برای ویرایش */
+}
+
+button.remove {
+    background: transparent;
+    border: none;
+    color: #dc3545; /* رنگ قرمز برای دکمه حذف */
+    margin-left: auto; /* راست‌چین کردن */
+    cursor: pointer;
+}
+
+button.clear-all {
+    background-color: #dc3545; /* رنگ قرمز */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px; /* فاصله از وظایف */
+    font-size: 16px;
+    width: 100%; /* عرض کامل */
+}
+
+button.clear-all:hover {
+    background-color: #b02a37; /* رنگ قرمز تیره‌تر در هاور */
+}
+/* سایر استایل‌ها */
+
+#clear-all {
+    background-color: transparent; /* پس‌زمینه شفاف */
+    border: none; /* حذف مرز */
+    color: #dc3545; /* رنگ قرمز */
+    cursor: pointer; /* تغییر نشانگر ماوس */
+    margin-left: 10px; /* فاصله از ورودی */
+    padding: 0; /* حذف پدینگ */
+}
+
+#clear-all i {
+    font-size: 20px; /* اندازه آیکون */
+}  

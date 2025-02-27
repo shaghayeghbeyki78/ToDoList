@@ -1,93 +1,110 @@
-document.addEventListener("DOMContentLoaded", loadTasks);
+document.addEventListener('DOMContentLoaded', loadTasks); // بارگذاری وظایف از localStorage
 
-const form = document.getElementById('task-form');
-const input = document.getElementById('task-input');
-const taskList = document.getElementById('task-list');
+document.getElementById('task-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // جلوگیری از ارسال فرم
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (input.value) {
-        addTask(input.value);
-        input.value = '';
+    const input = document.getElementById('task-input');
+    const taskText = input.value.trim(); // حذف فضاهای خالی
+
+    // نمایش خطا اگر ورودی خالی باشد
+    const errorMsg = document.getElementById('error-msg');
+    if (!taskText) {
+        errorMsg.textContent = 'فیلد وظیفه نمی‌تواند خالی باشد!';
+        errorMsg.style.display = 'block'; // نمایش پیغام خطا
+        return; // خروج از تابع
+    } else {
+        errorMsg.textContent = ''; // پاک کردن پیام خطا
+        errorMsg.style.display = 'none'; // پنهان کردن خطا
     }
+
+    // ایجاد عنصر جدید برای وظیفه
+    const task = { text: taskText, completed: false };
+    addTaskToDOM(task);
+    saveTaskToLocalStorage(task);
+
+    input.value = ''; // پاک کردن فیلد ورودی
 });
 
+// بارگذاری وظایف از localStorage
 function loadTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.forEach(task => addTaskToDOM(task.text, task.completed));
+    tasks.forEach(addTaskToDOM);
 }
 
-function addTask(text) {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const newTask = { text, completed: false };
-    tasks.push(newTask);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    addTaskToDOM(text, false);
-}
-
-function addTaskToDOM(text, completed) {
+// افزودن وظیفه به DOM
+function addTaskToDOM(task) {
     const li = document.createElement('li');
-    li.textContent = text;
-    li.className = completed ? 'completed' : '';
 
-    const editBtn = document.createElement('button');
-    editBtn.textContent = 'ویرایش';
-    editBtn.onclick = () => {
-        editTask(li, text);
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.classList.add('task-checkbox');
+    checkbox.checked = task.completed;
+    checkbox.addEventListener('change', function () {
+        li.classList.toggle('completed', checkbox.checked);
+        updateTaskInLocalStorage(task.text, checkbox.checked);
+    });
+
+    const taskLabel = document.createElement('span');
+    taskLabel.textContent = task.text;
+
+    const editButton = document.createElement('button');
+    editButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+    editButton.classList.add('edit');
+    editButton.onclick = function () {
+        const newTaskText = prompt('ویرایش وظیفه:', task.text);
+        if (newTaskText) {
+            taskLabel.textContent = newTaskText;
+            updateTaskInLocalStorage(task.text, false, newTaskText);
+            task.text = newTaskText;
+        }
     };
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'حذف';
-    deleteBtn.onclick = () => {
-        deleteTask(text);
+    const removeButton = document.createElement('button');
+    removeButton.innerHTML = '<i class="fas fa-times"></i>';
+    removeButton.classList.add('remove');
+    removeButton.onclick = function () {
         li.remove();
+        removeTaskFromLocalStorage(task.text);
     };
 
-    const toggleBtn = document.createElement('button');
-    toggleBtn.textContent = completed ? 'غیرفعال' : 'فعال';
-    toggleBtn.onclick = () => {
-        toggleTask(text);
-        li.classList.toggle('completed');
-        toggleBtn.textContent = li.classList.contains('completed') ? 'غیرفعال' : 'فعال';
-    };
-
-    li.appendChild(editBtn);
-    li.appendChild(toggleBtn);
-    li.appendChild(deleteBtn);
-    taskList.appendChild(li);
+    li.appendChild(checkbox);
+    li.appendChild(taskLabel);
+    li.appendChild(editButton);
+    li.appendChild(removeButton);
+    document.getElementById('task-list').appendChild(li);
+    li.classList.toggle('completed', task.completed);
 }
 
-function editTask(li, oldText) {
-    const newText = prompt("ویرایش وظیفه:", oldText);
-    if (newText === null) return; // کاربر دکمه لغو را زده است.
-    if (newText.trim() === '') {
-        alert("متن نمی‌تواند خالی باشد.");
-        return;
-    }
-
-    // به‌روزرسانی محتوای محلی و به‌روزرسانی UI
+// ذخیره وظیفه در localStorage
+function saveTaskToLocalStorage(task) {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.forEach(task => {
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// بروزرسانی وضعیت وظیفه در localStorage
+function updateTaskInLocalStorage(oldText, completed, newText) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const updatedTasks = tasks.map(task => {
         if (task.text === oldText) {
-            task.text = newText;
+            return { text: newText || oldText, completed };
         }
+        return task;
     });
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    li.firstChild.nodeValue = newText; // به‌روزرسانی متن وظیفه در DOM
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 }
 
-function deleteTask(text) {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks = tasks.filter(task => task.text !== text);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+// حذف وظیفه از localStorage
+function removeTaskFromLocalStorage(taskText) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const updatedTasks = tasks.filter(task => task.text !== taskText);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 }
 
-function toggleTask(text) {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.forEach(task => {
-        if (task.text === text) {
-            task.completed = !task.completed;
-        }
-    });
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}  
+// عملکرد دکمه سطل زباله
+document.getElementById('clear-all').addEventListener('click', function () {
+    if (confirm('آیا مطمئن هستید که همه وظایف را پاک کنید؟')) {
+        document.getElementById('task-list').innerHTML = ''; // حذف تمام وظایف
+        localStorage.removeItem('tasks'); // پاک کردن localStorage
+    }
+});  
