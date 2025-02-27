@@ -2,11 +2,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'vazir', sans-serif;
 }
 
 body {
-    background-color: #e0f7fa;
+    background-color: #6886b8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     width: 400px;
-    text-align: center;
+    text-align:left;
 }
 
 h1 {
@@ -33,7 +33,7 @@ form {
     margin-bottom: 20px;
 }
 
-input[type="text"] {
+input [type="text"] {
     border: 2px solid #007bff;
     border-radius: 5px 0 0 5px;
     padding: 10px;
@@ -51,7 +51,6 @@ button {
     font-size: 16px;
     transition: background-color 0.3s ease;
 }
-
 button:hover {
     background-color: #0056b3;
 }
