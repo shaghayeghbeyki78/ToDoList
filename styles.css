@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #e0f7fa; /* پس‌زمینه آبی کمرنگ */
+    background-color: #e0f7fa;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,23 +29,23 @@ h1 {
 
 form {
     display: flex;
-    justify-content: flex-start; /* چسباندن ورودی و دکمه */
+    justify-content: flex-start;
     margin-bottom: 20px;
 }
 
 input[type="text"] {
-    border: 2px solid #007bff; /* رنگ آبی */
-    border-radius: 5px 0 0 5px; /* گوشه‌های چپ ورودی گرد */
+    border: 2px solid #007bff;
+    border-radius: 5px 0 0 5px; 
     padding: 10px;
-    width: 75%; /* اندازه ورودی */
+    width: 75%;
     font-size: 16px;
 }
 
 button {
-    background-color: #007bff; /* رنگ آبی */
+    background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 0 5px 5px 0; /* گوشه‌های راست دکمه گرد */
+    border-radius: 0 5px 5px 0;
     padding: 10px 15px;
     cursor: pointer;
     font-size: 16px;
@@ -53,7 +53,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3; /* رنگ آبی تیره‌تر */
+    background-color: #0056b3;
 }
 
 ul {
@@ -68,61 +68,60 @@ li {
     padding: 10px;
     border-radius: 5px;
     display: flex;
-    align-items: center; /* تراز وسط */
+    align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .task-checkbox {
-    margin-right: 10px; /* فاصله از متن وظیفه */
+    margin-right: 10px;
 }
 
 li.completed span {
-    text-decoration: line-through; /* خط‌خورده شدن متن وظیفه */
-    color: #ababab; /* رنگ خاکستری برای وظیفه کامل شده */
+    text-decoration: line-through; 
+    color: #ababab; 
 }
 
 button.edit {
     background: transparent;
     border: none;
     cursor: pointer;
-    margin-left: 10px; /* فاصله از ضربدر */
-    color: #007bff; /* رنگ آبی برای ویرایش */
+    margin-left: 10px; 
+    color: #007bff;
 }
 
 button.remove {
     background: transparent;
     border: none;
-    color: #dc3545; /* رنگ قرمز برای دکمه حذف */
-    margin-left: auto; /* راست‌چین کردن */
+    color: #dc3545;
+    margin-left: auto;
     cursor: pointer;
 }
 
 button.clear-all {
-    background-color: #dc3545; /* رنگ قرمز */
+    background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-    margin-top: 20px; /* فاصله از وظایف */
+    margin-top: 20px; 
     font-size: 16px;
-    width: 100%; /* عرض کامل */
+    width: 100%; 
 }
 
 button.clear-all:hover {
-    background-color: #b02a37; /* رنگ قرمز تیره‌تر در هاور */
+    background-color: #b02a37; 
 }
-/* سایر استایل‌ها */
 
 #clear-all {
-    background-color: transparent; /* پس‌زمینه شفاف */
-    border: none; /* حذف مرز */
-    color: #dc3545; /* رنگ قرمز */
-    cursor: pointer; /* تغییر نشانگر ماوس */
-    margin-left: 10px; /* فاصله از ورودی */
-    padding: 0; /* حذف پدینگ */
+    background-color: transparent; 
+    border: none;
+    color: #dc3545; 
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 0; 
 }
 
 #clear-all i {
-    font-size: 20px; /* اندازه آیکون */
+    font-size: 20px;
 }  
