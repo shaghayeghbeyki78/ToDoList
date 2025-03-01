@@ -6,17 +6,6 @@ document.getElementById('task-form').addEventListener('submit', function (e) {
     const input = document.getElementById('task-input');
     const taskText = input.value.trim(); // حذف فضاهای خالی
 
-    // نمایش خطا اگر ورودی خالی باشد
-    const errorMsg = document.getElementById('error-msg');
-    if (!taskText) {
-        errorMsg.textContent = 'فیلد وظیفه نمی‌تواند خالی باشد!';
-        errorMsg.style.display = 'block'; // نمایش پیغام خطا
-        return; // خروج از تابع
-    } else {
-        errorMsg.textContent = ''; // پاک کردن پیام خطا
-        errorMsg.style.display = 'none'; // پنهان کردن خطا
-    }
-
     // ایجاد عنصر جدید برای وظیفه
     const task = { text: taskText, completed: false };
     addTaskToDOM(task);
@@ -107,4 +96,4 @@ document.getElementById('clear-all').addEventListener('click', function () {
         document.getElementById('task-list').innerHTML = ''; // حذف تمام وظایف
         localStorage.removeItem('tasks'); // پاک کردن localStorage
     }
-});  
+});
