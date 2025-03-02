@@ -124,3 +124,10 @@ button.clear-all:hover {
 #clear-all i {
     font-size: 20px;
 }
+#task-list li {
+    cursor: pointer;
+}
+
+.completed {
+    text-decoration: line-through;
+}
