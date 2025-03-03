@@ -1,133 +1,204 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'vazir', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "vazir", sans-serif;
 }
 
 body {
-    background-color: #6886b8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: #6886b8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    text-align:left;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  text-align: left;
 }
 
 h1 {
-    color: #343a40;
-    margin-bottom: 20px;
+  color: #343a40;
+  margin-bottom: 20px;
 }
 
 form {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 input [type="text"] {
-    border: 2px solid #007bff;
-    border-radius: 5px 0 0 5px;
-    padding: 10px;
-    width: 75%;
-    font-size: 16px;
+  border: 2px solid #007bff;
+  border-radius: 5px 0 0 5px;
+  padding: 10px;
+  width: 75%;
+  font-size: 16px;
 }
 
 button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 ul {
-    list-style: none;
-    margin-top: 20px;
-    padding: 0;
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
 }
 
 li {
-    background: #f9f9f9;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: #f9f9f9;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .task-checkbox {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 li.completed span {
-    text-decoration: line-through;
-    color: #ababab;
+  text-decoration: line-through;
+  color: #ababab;
 }
 
 button.edit {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    margin-left: 10px;
-    color: #007bff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  color: #007bff;
 }
 
 button.remove {
-    background: transparent;
-    border: none;
-    color: #dc3545;
-    margin-left: auto;
-    cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #dc3545;
+  margin-left: auto;
+  cursor: pointer;
 }
 
 button.clear-all {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 16px;
-    width: 100%;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+  width: 100%;
 }
 
 button.clear-all:hover {
-    background-color: #b02a37;
+  background-color: #b02a37;
 }
 
 #clear-all {
-    background-color: transparent;
-    border: none;
-    color: #dc3545;
-    cursor: pointer;
-    margin-left: 10px;
-    padding: 0;
+  background-color: transparent;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 0;
 }
 
 #clear-all i {
-    font-size: 20px;
+  font-size: 20px;
 }
 #task-list li {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .completed {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
+
+/* @font-face {
+  font-family: "Samim";
+  src: url("Samim/Samim-FD.woff2") format("woff2"),
+    url("Samim/Samim-FD.woff") format("woff"),
+    url("Samim/Samim-FD.ttf") format("truetype");
+}
+* {
+  font-family: "Samim";
+}
+body {
+  font-size: 14px;
+  background-color: #fcfcfc;
+} */
+/* input {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  height: 38px;
+  line-height: 38px;
+  width: 309px;
+  font-size: 16px;
+  padding: 0 5px;
+  color: #666;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  margin-right: auto;
+  margin-left: auto;
+} */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  text-align: center;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  text-align: center;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  text-align: center;
+}
+
+.settings {
+  position: fixed;
+  z-index: 1;
+  bottom: 5px;
+  right: 5px;
+  width: 150px;
+  padding: 5px;
+  text-align: center;
+  background-color: rgb(242, 255, 124);
+}
+.settings * {
+  vertical-align: middle;
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+/* img {
+  max-width: 100%;
+}
+p {
+  text-align: center;
+  direction: rtl;
+}
+.divider {
+  height: 20vh;
+} */

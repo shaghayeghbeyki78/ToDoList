@@ -135,4 +135,4 @@ function clearAllTasks() {
         localStorage.removeItem('tasks');
         updateClearButtonStatus();
     }
-}  
+}
