@@ -14,6 +14,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"
+    ></script>
   </head>
   <body>
     <div class="container">
@@ -25,6 +33,7 @@
           placeholder="Add Your Text"
           required
         />
+        <input type="date" id="date-input" required />
         <button type="submit">Add</button>
         <button type="button" id="clear-all" title="Clear All Tasks">
           <i class="fas fa-trash-alt"></i>
@@ -32,6 +41,7 @@
       </form>
       <ul id="task-list"></ul>
     </div>
+    <script src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
