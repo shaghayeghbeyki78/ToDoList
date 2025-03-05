@@ -44,26 +44,28 @@ function loadTasks() {
 
 function addTaskToDOM(task) {
     const li = document.createElement('li');
-    const checkbox = createCheckbox(task, li);
+    const checkbox = createCheckbox(task, li); // فراخوانی با ترتیب صحیح
     const taskLabel = createTaskLabel(task);
     const dateLabel = createDateLabel(task); // اضافه کردن تاریخ
-    const editButton = createEditButton(task, taskLabel);
+    const editButton = createEditButton(task, taskLabel, task); // ارسال task به createEditButton
     const removeButton = createRemoveButton(task, li);
 
     li.append(checkbox, taskLabel, dateLabel, editButton, removeButton);
     li.classList.toggle('completed', task.completed);
+    editButton.disabled = task.completed; // تنظیم اولیه وضعیت دکمه ویرایش
 
-    // اضافه کردن رویداد کلیک روی کل عنصر li برای فعال یا غیرفعال کردن وظیفه
-    li.addEventListener('click', () => {
-        const checkbox = li.querySelector('.task-checkbox');
-        checkbox.checked = !checkbox.checked;
-        li.classList.toggle('completed', checkbox.checked);
-        updateTaskInLocalStorage(task.text, checkbox.checked, task.date);
-        editButton.disabled = checkbox.checked;
+    // اضافه کردن رویداد کلیک روی label برای فعال یا غیرفعال کردن وظیفه
+    taskLabel.addEventListener('click', () => {
+        task.completed = !task.completed;
+        li.classList.toggle('completed', task.completed);
+        checkbox.checked = task.completed;
+        editButton.disabled = task.completed; // به‌روزرسانی وضعیت دکمه ویرایش
+        updateTaskInLocalStorage(task);
     });
 
     taskList.appendChild(li);
 }
+
 
 function createCheckbox(task, li) {
     const checkbox = document.createElement('input');
@@ -71,12 +73,23 @@ function createCheckbox(task, li) {
     checkbox.classList.add('task-checkbox');
     checkbox.checked = task.completed;
 
+    checkbox.addEventListener('change', () => {
+        task.completed = checkbox.checked;
+        li.classList.toggle('completed', task.completed);
+        const editButton = li.querySelector('.edit'); // پیدا کردن دکمه ویرایش مربوطه
+        if (editButton) {
+            editButton.disabled = task.completed; // به‌روزرسانی وضعیت دکمه ویرایش
+        }
+        updateTaskInLocalStorage(task);
+    });
+
     return checkbox;
 }
 
 function createTaskLabel(task) {
     const taskLabel = document.createElement('span');
     taskLabel.textContent = task.text;
+    taskLabel.classList.add('task-label'); // اضافه کردن کلاس
     return taskLabel;
 }
 
@@ -87,7 +100,7 @@ function createDateLabel(task) {
     return dateLabel;
 }
 
-function createEditButton(task, taskLabel) {
+function createEditButton(task, taskLabel) { // دریا��ت task به عنوان آرگومان
     const editButton = document.createElement('button');
     editButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
     editButton.classList.add('edit');
@@ -96,9 +109,9 @@ function createEditButton(task, taskLabel) {
     editButton.onclick = () => {
         const newTaskText = prompt('ویرایش وظیفه:', task.text);
         if (newTaskText) {
-            taskLabel.textContent = newTaskText;
-            updateTaskInLocalStorage(task.text, task.completed, newTaskText);
             task.text = newTaskText;
+            taskLabel.textContent = newTaskText;
+            updateTaskInLocalStorage(task);
         }
     };
 
@@ -129,13 +142,17 @@ function getTasksFromLocalStorage() {
     return JSON.parse(localStorage.getItem('tasks')) || [];
 }
 
-function updateTaskInLocalStorage(oldText, completed, newText) {
+function updateTaskInLocalStorage(updatedTask) {
     const tasks = getTasksFromLocalStorage();
-    const updatedTasks = tasks.map(task =>
-        task.text === oldText ? { text: newText || oldText, date: task.date, completed } : task
-    );
+    const updatedTasks = tasks.map(task => {
+        if (task.text === updatedTask.text && task.date === updatedTask.date) {
+            return updatedTask;
+        }
+        return task;
+    });
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 }
+
 
 function removeTaskFromLocalStorage(taskText) {
     const tasks = getTasksFromLocalStorage();
